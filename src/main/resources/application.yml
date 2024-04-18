@@ -5,7 +5,7 @@ spring:
     job:
       names: ${job.name:NONE}
     jdbc:
-      initialize-schema: ALWAY
+      initialize-schema: ALWAYS
   datasource:
     url: jdbc:mariadb://127.0.0.1:3306/batch_ex_24_04?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
     driver-class-name:
