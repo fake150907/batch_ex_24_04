@@ -1,9 +1,11 @@
 spring:
+  profiles:
+    active: dev
   batch:
     job:
       names: ${job.name:NONE}
     jdbc:
-      initialize-schema: ALWAYS
+      initialize-schema: ALWAY
   datasource:
     url: jdbc:mariadb://127.0.0.1:3306/batch_ex_24_04?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul
     driver-class-name:
@@ -11,6 +13,8 @@ spring:
     password:
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: create
 logging:
   level:
     com.ll.exam.batch_ex_24_04: debug
