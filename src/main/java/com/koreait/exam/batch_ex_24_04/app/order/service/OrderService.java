@@ -82,16 +82,12 @@ public class OrderService {
     }
 
     @Transactional
-    public void refundByRestCashOnly(Order order) {
-        Member orderer = order.getMember();
+    public void refund(Order order) {
+        int payPrice = order.getPayPrice();
+        memberService.addCash(order.getMember(),payPrice,"주문환불__예치금환불");
 
-        long restCash = orderer.getRestCash();
 
-        int payPrice = order.calculatePayPrice();
-
-        memberService.addCash(orderer,payPrice * -1, "주문결제__예치금결제");
-
-        order.setPaymentDone();
+        order.setRefundDone();
         orderRepository.save(order);
     }
 }
