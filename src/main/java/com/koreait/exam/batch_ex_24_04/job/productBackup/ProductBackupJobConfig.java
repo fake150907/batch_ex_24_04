@@ -49,13 +49,13 @@ public class ProductBackupJobConfig {
     public Step productBackupStep1(
             ItemReader productReader,
             ItemProcessor productToProductBackupProcessor,
-            ItemWriter productBackupWriter
+            ItemWriter ProductBackupWriter
     ) {
         return stepBuilderFactory.get("productBackupStep1")
                 .<Product, ProductBackup>chunk(100)
                 .reader(productReader)
                 .processor(productToProductBackupProcessor)
-                .writer(productBackupWriter)
+                .writer(ProductBackupWriter)
                 .build();
     }
 

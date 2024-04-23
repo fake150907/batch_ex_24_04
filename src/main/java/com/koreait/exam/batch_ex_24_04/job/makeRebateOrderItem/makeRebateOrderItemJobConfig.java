@@ -4,10 +4,6 @@ import com.koreait.exam.batch_ex_24_04.app.order.entity.OrderItem;
 import com.koreait.exam.batch_ex_24_04.app.order.entity.RebateOrderItem;
 import com.koreait.exam.batch_ex_24_04.app.order.repository.OrderItemRepository;
 import com.koreait.exam.batch_ex_24_04.app.order.repository.RebateOrderItemRepository;
-import com.koreait.exam.batch_ex_24_04.app.product.entity.Product;
-import com.koreait.exam.batch_ex_24_04.app.product.entity.ProductBackup;
-import com.koreait.exam.batch_ex_24_04.app.product.repository.ProductBackupRepository;
-import com.koreait.exam.batch_ex_24_04.app.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -69,9 +65,9 @@ public class makeRebateOrderItemJobConfig {
         return new RepositoryItemReaderBuilder<OrderItem>()
                 .name("orderItemReader")
                 .repository(orderItemRepository)
-                .methodName("findAll")
+                .methodName("findAllByIdLessThan")
                 .pageSize(100)
-                .arguments(Arrays.asList())
+                .arguments(Arrays.asList(6L))
                 .sorts(Collections.singletonMap("id", Sort.Direction.ASC))
                 .build();
     }
